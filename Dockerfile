@@ -9,6 +9,8 @@ ADD target/selenium-docker.jar selenium-docker.jar
 ADD target/selenium-docker-tests.jar selenium-docker-tests.jar
 ADD target/libs libs
 
+ADD healthcheck.sh healthcheck.sh
+
 
 #add suite files
 ADD testng.xml testng.xml
