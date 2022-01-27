@@ -21,7 +21,7 @@ pipeline {
 			        bat "docker login --username=admin --password=admin"
 			        bat "docker push myflixdocker/selenium-docker:latest"
 			    }                           
-            }           
+                      
             }
         }
     }
