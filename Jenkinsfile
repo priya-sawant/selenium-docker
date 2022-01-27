@@ -11,7 +11,7 @@ pipeline {
         stage('Build Image') {
             steps {
                
-               bat "docker build -t myflixdocker/selenium-docker -t myflixdocker/selenium-docker:${BUILD_NUMBER} ."
+               bat "docker build -t priya2298/selenium-docker -t priya2298/selenium-docker:${BUILD_NUMBER} ."
             }
         }
         stage('Push Image') {
@@ -19,7 +19,7 @@ pipeline {
 			    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     //sh
 			        
-			        bat "docker push myflixdocker/selenium-docker:latest"
+			        bat "docker push priya2298/selenium-docker:latest"
 			    }                           
                       
             }
