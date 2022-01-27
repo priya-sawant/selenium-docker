@@ -23,7 +23,7 @@ pipeline {
 
                 bat "docker login --username=%user% --password=%pass%"
 
-                bat "docker push priya2298/selenium-docker:latest"
+                bat "docker push myflixdocker/selenium-docker:latest"
 
                 }             
             }
