@@ -16,16 +16,12 @@ pipeline {
         }
         stage('Push Image') {
             steps {
-
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]) {
-
+			    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     //sh
-
-               
-
-                bat "docker push myflixdocker/selenium-docker:latest"
-
-                }             
+			        bat "docker login --username=${user} --password=${pass}"
+			        bat "docker push myflixdocker/selenium-docker:latest"
+			    }                           
+            }           
             }
         }
     }
