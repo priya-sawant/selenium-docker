@@ -1,26 +1,32 @@
 pipeline {
-    
-    agent any
+    agent none
     stages {
         stage('Build Jar') {
+            agent {
+                docker {
+                    image 'maven:3-alpine'
+                    args '-v /root/.m2:/root/.m2'
+                }
+            }
             steps {
-               
-                bat "mvn clean package -DskipTests"
+                sh 'mvn clean package -DskipTests'
             }
         }
         stage('Build Image') {
             steps {
-               
-                bat "docker build -t='myflixdocker/selenium-docker' ."
+                script {
+                	app = docker.build("myflixdocker/selenium-docker")
+                }
             }
         }
         stage('Push Image') {
             steps {
-			    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'admin', usernameVariable: 'admin')]) {
-                   
-			        bat "docker login --username=${user} --password=${pass}"
-			        bat "docker push myflixdocker/selenium-docker:latest"
-			    }                           
+                script {
+			        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+			        	app.push("${BUILD_NUMBER}")
+			            app.push("latest")
+			        }
+                }
             }
         }
     }
