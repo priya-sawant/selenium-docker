@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite" thread-count="2" parallel="tests">
+
+<test name="firefoxtest">
+<parameter name="BROWSER" value="firefox"/>
+<classes>
+<class name="testcase.test"/>
+</classes>
+</test>
+
+<test name="chrometest">
+<parameter name="BROWSER" value="chrome"/>
+<classes>
+<class name="testcase.test"/>
+</classes>
+</test>
+
+<test name="hub">
+<parameter name="HUB_HOST" value="localhost"/>
+<classes>
+<class name="testcase.test"/>
+</classes>
+</test>
+
+
+  
+</suite> <!-- Suite -->
