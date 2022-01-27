@@ -11,7 +11,7 @@ pipeline {
         stage('Build Image') {
             steps {
                
-                bat "docker build -t=myflixdocker/selenium-docker ."
+               bat "docker build -t myflixdocker/selenium-docker -t myflixdocker/selenium-docker:${BUILD_NUMBER} ."
             }
         }
         stage('Push Image') {
